@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h2>Details of person with id={{user.pk}}</h2>
+<table class="table table-striped">
+    <thead>
+   <tr>
+      <th>First name</th> <th>Last name</th> <th>Description</th><th>Address</th><th>Phone and phone type</th><th>Email and email type</th>
+   </tr>
+    </thead>
+
+    <tbody>
+
+   <tr>
+      <td>{{user.name}}</td> <td>{{user.surname}}</td> <td>{{user.description}}</td>
+       <td>
+           <strong>Street:</strong> {{user.address.street}} {{user.address.house_nr}} {{user.address.flat_nr}},
+               <br><strong>City:</strong> {{user.address.city}}
+               <br><strong>Code:</strong> {{user.address.code}}</td>
+
+       <td>{% for item in user.users_phone.all %}
+           <strong>Number:</strong> {{item.number}}
+           <br><strong>Type:</strong> {{item.get_type_display}}<br>
+           {%  endfor %}</td>
+       <td>{% for item in user.users_email.all %}
+           <strong>Email:</strong> {{item.email}}
+           <br><strong>Type:</strong> {{item.get_email_type_display}}<br>
+           {%  endfor %}</td>
+   </tr>
+
+</tbody>
+</table>
+</body>
+</html>

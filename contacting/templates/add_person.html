@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1> Add person to contact list</h1>
+
+                <form action = "" method = "POST">
+                <label>
+                First name
+                <input type = "text" name = "name">
+            </label>
+                                    <label>
+                Last name
+                <input type = "text" name = "surname">
+            </label>
+               Description
+                <textarea maxlength="500" rows="4" cols="50" name = "description">
+                </textarea>
+        <label>
+        Address<br>
+        Street: <input type = "text" name = "street"><br>
+        House no: <input type = "number" name = "house_nr"><br>
+        Flat no:<input type = "number" name = "flat_nr"><br>
+            City:<input type = "text" name = "city"><br>
+            Code: <input type = "text" name = "code" pattern="\d{2}-\d{3}" value="xx-xxx">
+        </label><br>
+                    <label>Phone number
+                        <input type="text" name="number">
+                    </label>
+                    <label>Phone type
+                        <select name="phone_type">
+                            <option></option>
+                <label>
+       Dostępność projektora:
+        <input type="radio" name="projector" value="True" checked>Dostępny
+        <input type="radio" name="projector" value="False">Niedostępny
+        </label>
+        <input type = "submit" value = "Send">
+        </label>
+        </form>
+</body>
+</html>
