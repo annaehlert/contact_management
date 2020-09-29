@@ -16,12 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from contacting.views import show_all, person_details, Add_new
+from contacting.views import show_all, person_details, Add_new, Add_category
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', show_all),
-    path('person/<int:id>', person_details),
-    path('new-person', Add_new.as_view()),
+    path('', show_all, name="index"),
+    path('person/<int:id>', person_details, name="details"),
+    path('new-person', Add_new.as_view(), name="add-new"),
+    path('new-category', Add_category.as_view(), name="add-category"),
 
 ]

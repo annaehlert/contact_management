@@ -1,13 +1,16 @@
 from django.db import models
 
+
+EMAILS = (
+    (1, "Home"),
+    (2, "Work")
+)
+
+
 TYPES = (
     (1, "Mobile"),
     (2, "Home"),
     (3, "Work")
-)
-EMAILS = (
-    (1, "Home"),
-    (2, "Work")
 )
 
 
@@ -19,11 +22,18 @@ class Address(models.Model):
     code = models.CharField(max_length=6, default="00-000")
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=64)
+
+    def __str__(self):
+        return self.name
+
 class User(models.Model):
     name = models.CharField(max_length=64)
     surname = models.CharField(max_length=64)
     description = models.CharField(max_length=500, null=True)
     address = models.ForeignKey(Address, on_delete=models.CASCADE, related_name='address_person')
+    type = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='category', null=True)
 
 
 class Phone(models.Model):
