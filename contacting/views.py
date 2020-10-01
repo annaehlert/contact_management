@@ -2,8 +2,8 @@ from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 
-from contacting.forms import UserForm, CategoryForm, AddressForm
-from contacting.models import User, Category, Address
+from contacting.forms import UserForm, CategoryForm, AddressForm, PhoneForm, EmailForm
+from contacting.models import User, Category, Address, Phone, Email
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views import View
@@ -14,7 +14,7 @@ def show_all(request):
     ctx = {
             "users": users,
             }
-    return render(request, "base.html", ctx)
+    return render(request, "panel.html", ctx)
 
 
 def person_details(request, id):
@@ -84,3 +84,43 @@ class Add_category(View):
         Category.objects.create(name=name)
         messages.add_message(request, messages.SUCCESS, 'New category added successfully')
         return redirect("index")
+
+
+class Add_phone(View):
+    def get(self, request, id):
+        form = PhoneForm()
+        ctx = {
+            "form": form
+        }
+        return render(request, "add_phone.html", ctx)
+
+    def post(self, request, id):
+        form = PhoneForm(request.POST)
+        if not form.is_valid():
+            messages.add_message(request, messages.WARNING, 'Email NOT added. Try again!')
+            return render(request, "add_phone.html", {"form": form})
+        number = form.cleaned_data['number']
+        type = form.cleaned_data['type']
+        Phone.objects.create(number=number, type=type, user_id=id)
+        messages.add_message(request, messages.SUCCESS, 'Phone added successfully')
+        return redirect("details", id=id)
+
+
+class Add_email(View):
+    def get(self, request, id):
+        form = EmailForm()
+        ctx = {
+            "form": form
+        }
+        return render(request, "add_email.html", ctx)
+
+    def post(self, request, id):
+        form = EmailForm(request.POST)
+        if not form.is_valid():
+            messages.add_message(request, messages.WARNING, 'Email NOT added. Try again!')
+            return render(request, "add_email.html", {"form": form})
+        email = form.cleaned_data['email']
+        email_type = form.cleaned_data['email_type']
+        Email.objects.create(email=email, email_type=email_type, user_id=id)
+        messages.add_message(request, messages.SUCCESS, 'Email added successfully')
+        return redirect("details", id=id)

@@ -41,6 +41,8 @@ class Phone(models.Model):
     type = models.IntegerField(choices=TYPES)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='users_phone')
 
+# def __str__(self):
+#     return self.get_type_display()
 
 class Email(models.Model):
     email = models.CharField(max_length=64)

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from contacting.views import show_all, person_details, Add_new, Add_category
+from contacting.views import show_all, person_details, Add_new, Add_category, Add_phone, Add_email
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +24,7 @@ urlpatterns = [
     path('person/<int:id>', person_details, name="details"),
     path('new-person', Add_new.as_view(), name="add-new"),
     path('new-category', Add_category.as_view(), name="add-category"),
+    path('person/<int:id>/new-phone', Add_phone.as_view(), name="add-phone"),
+    path('person/<int:id>/new-email', Add_email.as_view(), name="add-email"),
 
 ]

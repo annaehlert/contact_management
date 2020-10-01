@@ -1,6 +1,6 @@
 from django import forms
 
-from contacting.models import Category
+from contacting.models import Category, TYPES, Phone, EMAILS
 
 
 class UserForm(forms.Form):
@@ -25,6 +25,16 @@ class AddressForm(forms.Form):
 
 class CategoryForm(forms.Form):
     name = forms.CharField(max_length=64)
+
+
+class PhoneForm(forms.Form):
+    number = forms.CharField(max_length=9)
+    type = forms.ChoiceField(widget=forms.Select, choices=TYPES, required=True)
+
+
+class EmailForm(forms.Form):
+    email = forms.CharField(max_length=64)
+    email_type = forms.ChoiceField(widget=forms.Select, choices=EMAILS, required=True)
 #
 # class RegistrationForm(forms.Form):
 #     password = forms.CharField(max_length=40, widget=forms.PasswordInput(attrs={'placeholder': "Hasło"}),

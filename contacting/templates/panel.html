@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<table class="table table-striped">
+    <thead>
+   <tr>
+       <th>First name</th> <th>Last name</th> <th>Category</th><th>Actions</th><!--      <th>Description</th><th>Address</th>-->
+   </tr>
+    </thead>
+
+    <tbody>
+    {%  for user in users %}
+   <tr>
+       <td>{{user.name}}</td> <td>{{user.surname}}</td> <td>{{user.type}}</td><td><a href="{% url 'details' id=user.id %}" class="btn btn-success">Details</a></td><!--      <td>{{user.description}}</td>
+       <td>
+           <strong>Street:</strong> {{user.address.street}} {{user.address.house_nr}} {{user.address.flat_nr}},
+               <br><strong>City:</strong> {{user.address.city}}
+               <br><strong>Code:</strong> {{user.address.code}}</td>-->
+   </tr>
+{%  endfor %}
+</tbody>
+</table>
+{% endblock %}
